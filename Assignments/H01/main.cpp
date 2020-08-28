@@ -1,3 +1,30 @@
+///////////////////////////////////////////////////////////////////////////////
+//                   
+// Author:           Ross Ditto
+// Email:            ross.ditto@gmail.com
+// Label:            H01
+// Title:            Commenting Code
+// Course:           CMPS 2143
+// Semester:         Fall 2020
+//
+// Description:
+//       
+//       
+//       
+//       
+//       
+//       
+//        
+//       
+// Usage: 
+//      - $ ./main filename
+//      - 
+//      
+// Files:            
+//      main.cpp    : driver program 
+//      
+//      
+/////////////////////////////////////////////////////////////////////////////////
 #include <iostream>
 
 using namespace std;
