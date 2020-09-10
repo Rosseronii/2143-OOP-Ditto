@@ -2,7 +2,7 @@
 //                   
 // Author:           Ross Ditto
 // Email:            erditto1223@my.msutexas.edu
-// Label:            P02
+// Label:            P01
 // Title:            Array Based Stack Example
 // Course:           2143
 // Semester:         Fall 2020
