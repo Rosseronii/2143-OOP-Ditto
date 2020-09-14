@@ -18,9 +18,11 @@
 //       Nothing special right now.
 //
 // Files:            
-//       None
+//       main.cpp
+//       input file
 /////////////////////////////////////////////////////////////////////////////////
 #include <iostream>
+#include <fstream>
 #include <string>
 using namespace std;
 
@@ -93,6 +95,8 @@ public:
         S = new int[capacity];  // allocate new memory
         top = -1;               // initialize top of stack
         size = 0;               // set stack to empty
+        ArrayMin = capacity;
+        ArrayMax = ArrayMin;
     }
 
     /**
@@ -105,9 +109,39 @@ public:
      *     Void
      */
     void Push(int data) {
+        
+        
+        if(Full())
+        {
+            int* newStack = new int[capacity *2];
+            for (int x = 0; x < capacity; x++)
+            {
+                newStack[x] = S[x];
+            }
+            delete[] S;
+            S = newStack;
+            cout << "+ : " << capacity << "---->" << capacity * 2 << end1;
+            capacity *=2;
+            if (ArrayMax < capacity)
+                ArrayMax=capacity;
+        }
+        
         top++;              // move top of stack up
         size++;             // increment size
         S[top] = data;      // add item to array
+        
+        if ((capacity != ArrayMin) && (size < capacity/2))
+        {
+            int* newStack = new int[capacity / 2];
+            for (int x = 0; x < capacity / 2; x++)
+            {
+                newstack[x] = S[x];
+            }
+            delete[] S;
+            s = newStack;
+            cout << "- : " << capacity << "---->" << capacity / 2 << end1;
+            capacity /= 2;
+        }
     }
 
     /**
@@ -120,6 +154,12 @@ public:
      *     int
      */
     int Pop() {
+        if (Empty())
+        {
+            cout << "Error: Stack empty!" << end1;
+            return -1;
+        }
+        
         int data = S[top];  // pull item from stack
         top--;              // shrink the stack
         size--;             // update our size
@@ -136,7 +176,7 @@ public:
      *     bool : true == stack is empty
      */
     bool Empty() {
-        //return size == 0;
+        return size == 0;
         return top == -1;
     }
 
@@ -188,97 +228,7 @@ public:
     }
 };
 
-/**
- * Person
- * 
- * Description:
- *      Example struct that represents a person.
- * 
- * Usage: 
- * 
- *  Person P1;
- * 
- *  P1.fname = "firstName";
- *  P1.lname = "lastName";
- *  P1.age = 99
- *  cout<<P1<<endl;
- * 
- *  Person P2("billy","bob",11);
- *  cout<<P2<<endl;
- */
-struct Person {
-    string fname;
-    string lname;
-    int age;
-
-    Person();
-    Person(string, string, int);
-
-    friend ostream &operator<<(ostream &os, const Person p) {
-        os << p.fname << "," << p.lname << " : " << p.age << endl;
-        return os;
-    }
-};
-
-/**
- * Constructor:
- *    Constructs the person structure
- * Params:
- *    void
- * 
- * Returns:
- *     void
- */   
-Person::Person() {
-    fname = "";
-    lname = "";
-    age = 0;
-}
-
-/**
- * Constructor:
- *    Constructs the person structure
- * Params:
- *    string    : first name
- *    string    : last name
- *    int       : persons age
- * 
- * Returns:
- *     void
- */ 
-Person::Person(string f, string l, int a) {
-    fname = f;
-    lname = l;
-    age = a;
-}
-
 int main() {
-    Stack S1;           // calls default constructor
-    Stack S2(25);       // calls overloaded constructor
 
-    S1.Push(7);
-    S1.Push(4);
-    S1.Push(8);
-    S1.Push(2);
-    S1.Print();
-
-    cout << "Popped a: " << S1.Pop() << endl;
-    cout << "Popped a: " << S1.Pop() << endl;
-    
-    S1.Push(9);
-
-    //S1.Print();           // old way to print!
-    cout << S1 << endl;     // cool way to print
-
-    Person P1;              // calls default constructor (no params)
-
-    P1.fname = "suzy";      // adds values to person P1
-    P1.lname = "queue";
-    P1.age = 14;
-
-    cout << P1 << endl;     // calls overloaded ostream method
-
-    Person P2("dudley", "doowright", 30);   // uses overloaded constructor
-
-    cout << P2 << endl;     // calls overloaded ostream method
+    cout << Header();
 }
