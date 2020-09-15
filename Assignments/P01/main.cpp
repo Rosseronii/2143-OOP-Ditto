@@ -142,7 +142,7 @@ public:
                 newStack[x] = S[x];                             //new stack filled with number values
             }
             delete[] S;                                         //stack erased
-            s = newStack;                                       //points toward new stack
+            S = newStack;                                       //points toward new stack
             cout << "- : " << capacity << "---->" << capacity / 2 << endl;
             capacity /= 2;                                      //new stack capacity halved
         }
