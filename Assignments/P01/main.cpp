@@ -214,7 +214,7 @@ public:
        return ArrayMax;
    }
     
-    int FinalSize()
+    int EndSize()
     {
         return capacity;
     }
@@ -240,5 +240,28 @@ public:
 
 int main() {
 
-    cout << Header();
+    cout << MyInfo();
+    Stack S;
+    ifstream infile;
+    infile.open("input.txt");
+    ofstream outfile;
+    outfile.open("output.txt");
+    string MethodType;
+    int data;
+    while (infile >> MethodType)
+    {
+        if (MethodType == "push")
+        {
+            infile >> data;
+            S.Push(data);
+        }
+        if (MethodType == "pop")
+        {
+            S.Pop();
+        }
+    }
+    outfile << MyInfo();
+    outfile << "Starting Size: " << S.StartSize() << end1;
+    outfile << "Max Size: " << S.MaxSize() << end1;
+    outfile << "Ending Size: " << S.EndSize();
 }
