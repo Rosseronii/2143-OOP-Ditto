@@ -305,7 +305,6 @@ int main() {
             S.Pop();                      //values removed from stack
         }
     }
-    outfile << MyInfo();                 //printed to output
     outfile << "Starting Size: " << S.StartSize() << endl;  //starting size printed to output
     outfile << "Max Size: " << S.MaxSize() << endl;         //max size printed to output
     outfile << "Ending Size: " << S.EndSize();              //ending size printed to output
