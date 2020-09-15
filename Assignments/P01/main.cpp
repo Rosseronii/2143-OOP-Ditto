@@ -250,21 +250,7 @@ public:
     {
         return capacity; //final size
     }
-    /**
-     * MyInfo:
-     *    Returns a string with my name, program, and date
-     * Params:
-     *    void
-     *
-     * Returns:
-     *     string: my information
-     */
-    string MyInfo()  //my info returned
-    {
-        return "Name: Ross Ditto";
-        return "Program: P01";
-        return "Date: 15 Sept 2020";
-    }
+  
     /**
      * Overloaded ostream <<
      *    Lets us print a stack using cout
@@ -284,7 +270,21 @@ public:
         return os;
     }
 };
-
+  /**
+     * MyInfo:
+     *    Returns a string with my name, program, and date
+     * Params:
+     *    void
+     *
+     * Returns:
+     *     string: my information
+     */
+    string MyInfo()  //my info returned
+    {
+        return "Name: Ross Ditto";
+        return "Program: P01";
+        return "Date: 15 Sept 2020";
+    }
 int main() {
 
     cout << MyInfo();                       //my info printed
