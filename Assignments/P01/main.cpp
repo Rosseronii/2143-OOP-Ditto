@@ -124,7 +124,7 @@ public:
             }
             delete[] S;                                            //old stack erased
             S = newStack;                                          //points toward new stack
-            cout << "+ : " << capacity << "---->" << capacity * 2 << end1;
+            cout << "+ : " << capacity << "---->" << capacity * 2 << endl;
             capacity *=2;                                         //new stack capacity doubled
             if (ArrayMax < capacity)                             
                 ArrayMax=capacity;                               //size set to maximum value
@@ -143,7 +143,7 @@ public:
             }
             delete[] S;                                         //stack erased
             s = newStack;                                       //points toward new stack
-            cout << "- : " << capacity << "---->" << capacity / 2 << end1;
+            cout << "- : " << capacity << "---->" << capacity / 2 << endl;
             capacity /= 2;                                      //new stack capacity halved
         }
     }
@@ -160,7 +160,7 @@ public:
     int Pop() {
         if (Empty())                                    //if stack is empty
         {
-            cout << "Error: Stack empty!" << end1;      //error messaged printed
+            cout << "Error: Stack empty!" << endl;      //error messaged printed
             return -1;
         }
         
@@ -308,8 +308,8 @@ int main() {
         }
     }
     outfile << MyInfo();                 //printed to output
-    outfile << "Starting Size: " << S.StartSize() << end1;  //starting size printed to output
-    outfile << "Max Size: " << S.MaxSize() << end1;         //max size printed to output
+    outfile << "Starting Size: " << S.StartSize() << endl;  //starting size printed to output
+    outfile << "Max Size: " << S.MaxSize() << endl;         //max size printed to output
     outfile << "Ending Size: " << S.EndSize();              //ending size printed to output
     infile.close();
     outfile.close();                                        //close files
