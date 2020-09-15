@@ -280,10 +280,8 @@ public:
      *     string: my information
      */
     string MyInfo()  //my info returned
-    {
-        return "Name: Ross Ditto";
-        return "Program: P01";
-        return "Date: 15 Sept 2020";
+   {
+        return "Name: Ross Ditto \nProgram: P01 \nDate: 15 Sept 2020\n\n\n\n";
     }
 int main() {
 
