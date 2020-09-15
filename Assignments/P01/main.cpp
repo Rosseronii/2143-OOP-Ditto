@@ -139,7 +139,7 @@ public:
             int* newStack = new int[capacity / 2];              //new stack created (half sized)
             for (int x = 0; x < capacity / 2; x++)
             {
-                newstack[x] = S[x];                             //new stack filled with number values
+                newStack[x] = S[x];                             //new stack filled with number values
             }
             delete[] S;                                         //stack erased
             s = newStack;                                       //points toward new stack
