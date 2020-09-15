@@ -264,4 +264,7 @@ int main() {
     outfile << "Starting Size: " << S.StartSize() << end1;
     outfile << "Max Size: " << S.MaxSize() << end1;
     outfile << "Ending Size: " << S.EndSize();
+    infile.close();
+    outfile.close();
+    return 0;
 }
