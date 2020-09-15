@@ -7,13 +7,15 @@
 // Author:           Ross Ditto
 // Email:            erditto1223@my.msutexas.edu
 // Label:            P01
-// Title:            Array Based Stack Example
+// Title:            Stack Upgrade
 // Course:           2143
 // Semester:         Fall 2020
 //
 // Description:
-//       Example implementation of an array based stack that holds integers.
-//
+//       Push and Pop values from an input file for an array-based stack. 
+//       Prints the starting, max, and end size at end of program.
+//       Empty values are prevented from popping.
+//       If the stack overflows, then the stack is doubled to make room for more values.
 // Usage:
 //       Nothing special right now.
 //
@@ -40,7 +42,9 @@ using namespace std;
  *      - bool empty()
  *      - bool full()
  *      - void Print()
- * 
+ *      - int StartSize()
+ *      - int MaxSize()
+ *      - int EndSize()
  * Private Methods:
  *      - None
  * 
@@ -51,7 +55,7 @@ using namespace std;
  *  S.Push(90);
  *  S.Print();
  *  int x = S.Pop();
- *      
+ *     
  */
 class Stack {
 private:
@@ -59,6 +63,8 @@ private:
     int capacity; //max stack size
     int top;      //current top (index)
     int size;     //current num items
+    int ArrayMax; //minimum stack size
+    int ArrayMin; //maximum stack size
 public:
     /**
      * Stack:
@@ -75,6 +81,8 @@ public:
         S = new int[capacity];  // allocate new memory
         top = -1;               // initialize top of stack
         size = 0;               // set stack to empty
+        ArrayMin = capacity;    // min stack size
+        ArrayMax = ArrayMin;    //starting size set to max
     }
 
     /**
@@ -91,8 +99,8 @@ public:
         S = new int[capacity];  // allocate new memory
         top = -1;               // initialize top of stack
         size = 0;               // set stack to empty
-        ArrayMin = capacity;
-        ArrayMax = ArrayMin;
+        ArrayMin = capacity;    // min stack size
+        ArrayMax = ArrayMin;    //starting size set to max
     }
 
     /**
@@ -107,36 +115,36 @@ public:
     void Push(int data) {
         
         
-        if(Full())
+        if(Full())                                                  //if the stack is filled
         {
-            int* newStack = new int[capacity *2];
+            int* newStack = new int[capacity *2];                   //double stack value for new stack
             for (int x = 0; x < capacity; x++)
             {
-                newStack[x] = S[x];
+                newStack[x] = S[x];                                 //old stack values added to new
             }
-            delete[] S;
-            S = newStack;
+            delete[] S;                                            //old stack erased
+            S = newStack;                                          //points toward new stack
             cout << "+ : " << capacity << "---->" << capacity * 2 << end1;
-            capacity *=2;
-            if (ArrayMax < capacity)
-                ArrayMax=capacity;
+            capacity *=2;                                         //new stack capacity doubled
+            if (ArrayMax < capacity)                             
+                ArrayMax=capacity;                               //size set to maximum value
         }
         
-        top++;              // move top of stack up
-        size++;             // increment size
-        S[top] = data;      // add item to array
+        top++;                                                   // move top of stack up
+        size++;                                                 // increment size
+        S[top] = data;                                          // add item to array
         
-        if ((capacity != ArrayMin) && (size < capacity/2))
+        if ((capacity != ArrayMin) && (size < capacity/2))      //array reduced if number value less than half of array size
         {
-            int* newStack = new int[capacity / 2];
+            int* newStack = new int[capacity / 2];              //new stack created (half sized)
             for (int x = 0; x < capacity / 2; x++)
             {
-                newstack[x] = S[x];
+                newstack[x] = S[x];                             //new stack filled with number values
             }
-            delete[] S;
-            s = newStack;
+            delete[] S;                                         //stack erased
+            s = newStack;                                       //points toward new stack
             cout << "- : " << capacity << "---->" << capacity / 2 << end1;
-            capacity /= 2;
+            capacity /= 2;                                      //new stack capacity halved
         }
     }
 
@@ -150,9 +158,9 @@ public:
      *     int
      */
     int Pop() {
-        if (Empty())
+        if (Empty())                                    //if stack is empty
         {
-            cout << "Error: Stack empty!" << end1;
+            cout << "Error: Stack empty!" << end1;      //error messaged printed
             return -1;
         }
         
@@ -199,24 +207,63 @@ public:
      *     void
      */    
     void Print() {
-        for (int i = top; i >= 0; i--) {
+        for (int i = top; i >= 0; i--) {    //prints values
             cout << S[i] << endl;
         }
     }
-
+/**
+     * StartSize:
+     *    Returns starting size value of stack
+     * Params:
+     *    void
+     *
+     * Returns:
+     *     int: stack size
+     */
    int StartSize()
    {
-       return ArrayMin;
+       return ArrayMin; //starting size
    }
-    
+ /**
+     * MaxSize:
+     *    Returns maximum size value of stack
+     * Params:
+     *    void
+     *
+     * Returns:
+     *     int: stack size
+     */   
    int MaxSize()
    {
-       return ArrayMax;
+       return ArrayMax;  //largest size
    }
-    
+  /**
+     * EndSize:
+     *    Returns ending size value of stack
+     * Params:
+     *    void
+     *
+     * Returns:
+     *     int: stack size
+     */  
     int EndSize()
     {
-        return capacity;
+        return capacity; //final size
+    }
+    /**
+     * MyInfo:
+     *    Returns a string with my name, program, and date
+     * Params:
+     *    void
+     *
+     * Returns:
+     *     string: my information
+     */
+    string MyInfo()  //my info returned
+    {
+        return "Name: Ross Ditto";
+        return "Program: P01";
+        return "Date: 15 Sept 2020";
     }
     /**
      * Overloaded ostream <<
@@ -240,31 +287,31 @@ public:
 
 int main() {
 
-    cout << MyInfo();
-    Stack S;
-    ifstream infile;
+    cout << MyInfo();                       //my info printed
+    Stack S;                                //stack created
+    ifstream infile;                        //read from input file
     infile.open("input.txt");
-    ofstream outfile;
+    ofstream outfile;                       //output file created and opened
     outfile.open("output.txt");
-    string MethodType;
-    int data;
-    while (infile >> MethodType)
+    string PushOrPop;                        // pop/push types
+    int data;                               //file data
+    while (infile >> PushOrPop)            //loop through all data to be read
     {
-        if (MethodType == "push")
+        if (PushOrPop == "push")           //values added to stack from file
         {
-            infile >> data;
-            S.Push(data);
+            infile >> data;                // value data retrieved from file
+            S.Push(data);                  //added to stack
         }
-        if (MethodType == "pop")
+        if (PushOrPop == "pop")
         {
-            S.Pop();
+            S.Pop();                      //values removed from stack
         }
     }
-    outfile << MyInfo();
-    outfile << "Starting Size: " << S.StartSize() << end1;
-    outfile << "Max Size: " << S.MaxSize() << end1;
-    outfile << "Ending Size: " << S.EndSize();
+    outfile << MyInfo();                 //printed to output
+    outfile << "Starting Size: " << S.StartSize() << end1;  //starting size printed to output
+    outfile << "Max Size: " << S.MaxSize() << end1;         //max size printed to output
+    outfile << "Ending Size: " << S.EndSize();              //ending size printed to output
     infile.close();
-    outfile.close();
+    outfile.close();                                        //close files
     return 0;
 }
