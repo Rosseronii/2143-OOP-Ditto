@@ -70,10 +70,6 @@ public:
      *     Void
      */
     Stack() {
-                                //to do: if pop method is called when stack is empty, print: "Error, Stack empty!" and return a -1
-                                // for full stack: allocate new memory double size of original array, copy each stack value over to the new array, point the array
-                                // pointer s to the new array, delete old array
-                                // if a user starts popping items ooff the stack, and the stack gets below half full, reduce size of stack by half
         
         capacity = 10;          // set array size
         S = new int[capacity];  // allocate new memory
@@ -208,6 +204,20 @@ public:
         }
     }
 
+   int StartSize()
+   {
+       return ArrayMin;
+   }
+    
+   int MaxSize()
+   {
+       return ArrayMax;
+   }
+    
+    int FinalSize()
+    {
+        return capacity;
+    }
     /**
      * Overloaded ostream <<
      *    Lets us print a stack using cout
