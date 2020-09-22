@@ -7,6 +7,7 @@
 
 * Abstraction
   * The hiding of unnecessary details of an object from the user to reduce complexity.
+  ![] (abstraction.gif)
 # 
 * Attributes / Properties
   * Information that is stored in a class or instance to represent the quality/state of said class/instance.
