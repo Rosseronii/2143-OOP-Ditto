@@ -113,3 +113,5 @@ Methods:
 	Print - prints current state to console
 	AcceptBets - accept all player bets of certain value
 	DealRound - start round off
+
+![Alt Text](https://github.com/Rosseronii/2143-OOP-Ditto/blob/master/Assignments/P02/blackjack%20(1).pdf)
