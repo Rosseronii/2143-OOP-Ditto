@@ -114,4 +114,4 @@ Methods:
 	AcceptBets - accept all player bets of certain value
 	DealRound - start round off
 
-![Blackjack UML](Assignments/P02/blackjack.PNG)
+![Blackjack UML](https://raw.githubusercontent.com/Rosseronii/2143-OOP-Ditto/master/Assignments/P02/blackjack.PNG)
